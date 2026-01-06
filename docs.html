@@ -8,123 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        :root {
-            --primary: #3b82f6;
-            --bg: #0f111a;
-            --card: #151a24;
-            --text-main: #ffffff;
-            --text-sec: #94a3b8;
-            --border: rgba(255,255,255,0.1);
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: rgba(15, 17, 26, 0.95);
-            border-right: 1px solid var(--border);
-            height: 100vh;
-            position: fixed;
-            padding: 30px;
-            box-sizing: border-box;
-            overflow-y: auto;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-link {
-            display: block;
-            padding: 10px 0;
-            color: var(--text-sec);
-            text-decoration: none;
-            transition: 0.2s;
-            font-size: 15px;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary);
-            padding-left: 5px;
-        }
-
-        /* Content */
-        .content {
-            margin-left: 280px;
-            padding: 60px 80px;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        section {
-            margin-bottom: 60px;
-            padding-top: 20px;
-        }
-
-        h1 { font-size: 42px; margin-bottom: 20px; }
-        h2 { font-size: 28px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; color: var(--primary); }
-        h3 { font-size: 20px; margin-top: 30px; margin-bottom: 10px; }
-        p, li { line-height: 1.7; color: var(--text-sec); margin-bottom: 15px; }
-
-        code {
-            background: rgba(255,255,255,0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            color: #e2e8f0;
-        }
-
-        pre {
-            background: #1e293b;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            border: 1px solid var(--border);
-            color: #e2e8f0;
-        }
-
-        .note-box {
-            background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid var(--primary);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 20px 0;
-        }
-
-        img { width: 100%; border-radius: 8px; border: 1px solid var(--border); margin: 20px 0; }
+        /* ... existing css ... */ 
     </style>
 </head>
 <body>
 
     <nav class="sidebar">
-        <div class="logo">
-            <i class="fa-solid fa-rocket" style="color: var(--primary);"></i> NovaAI
-        </div>
-        
-        <a href="#intro" class="nav-link active">Introduction</a>
-        <a href="#structure" class="nav-link">Folder Structure</a>
-        <a href="#browser" class="nav-link">How to Open</a>
-        <a href="#integration" class="nav-link">Backend Integration</a>
-        <a href="#customization" class="nav-link">Customization</a>
-        <a href="#credits" class="nav-link">Credits</a>
-        <br>
-        <a href="../index.html" class="nav-link" style="color: var(--text-main); font-weight: 600;">&larr; Live Preview</a>
+        <!-- ... -->
+        <a href="index.html" class="nav-link" style="color: var(--text-main); font-weight: 600;">&larr; Live Preview</a>
     </nav>
 
     <main class="content">

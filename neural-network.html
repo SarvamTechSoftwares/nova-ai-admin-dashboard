@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Training - NovaAI</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="holo-container scanline">
+
+    <div class="app-wrapper" style="background: transparent;">
+        <!-- Sidebar -->
+        <aside class="sidebar" style="background: rgba(15, 17, 26, 0.9); backdrop-filter: blur(10px);">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <div class="logo-text">NovaAI</div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-grid-2"></i> <span>Dashboard</span>
+                </a>
+                
+                <div class="nav-category">App</div>
+
+                <a href="playground.html" class="nav-item">
+                    <i class="fa-solid fa-flask"></i> <span>Playground</span>
+                </a>
+
+                <a href="model-training.html" class="nav-item active text-neon-cyan" style="border: 1px solid rgba(6, 182, 212, 0.3); background: rgba(6, 182, 212, 0.1);">
+                    <i class="fa-solid fa-layer-group"></i> <span style="text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);">Model Training</span> 
+                </a>
+
+                <a href="agents.html" class="nav-item">
+                    <i class="fa-solid fa-robot"></i> <span>Agents Hub</span>
+                </a>
+
+                <div class="nav-category">Management</div>
+                
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-users"></i> <span>Users</span>
+                </a>
+                <a href="#" class="nav-item">
+                     <i class="fa-solid fa-chart-pie"></i> <span>Analytics</span>
+                </a>
+
+                <div style="flex: 1;"></div>
+                
+                <a href="settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i> <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header" style="margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 10px; height: 10px; background: #06b6d4; box-shadow: 0 0 10px #06b6d4; border-radius: 50%;"></div>
+                    <h2 style="font-family: 'JetBrains Mono', monospace; color: #fff; letter-spacing: 1px; margin: 0;">NEURAL_NET_TRAINING_V9.0</h2>
+                </div>
+                
+                <div style="display: flex; gap: 15px;">
+                    <button class="hud-btn"><i class="fa-solid fa-stop"></i> STOP</button>
+                    <button class="hud-btn" style="border-color: #10b981; color: #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);"><i class="fa-solid fa-play"></i> RESUME</button>
+                </div>
+            </header>
+
+            <!-- Grid Layout -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px;">
+                
+                <!-- Training Graph -->
+                <div class="holo-card" style="padding: 20px; height: 400px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span class="text-neon-cyan" style="font-family: 'JetBrains Mono'; font-size: 12px;">> LOSS_ACCURACY_REALTIME</span>
+                        <div style="display: flex; gap: 10px; font-size: 11px; color: var(--text-secondary);">
+                            <span><i class="fa-solid fa-circle" style="color: #22d3ee; font-size: 8px;"></i> Acc</span>
+                            <span><i class="fa-solid fa-circle" style="color: #e879f9; font-size: 8px;"></i> Loss</span>
+                        </div>
+                    </div>
+                    <canvas id="trainingChart"></canvas>
+                </div>
+
+                <!-- Hardware Monitor -->
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                    
+                    <!-- GPU Status -->
+                    <div class="holo-card accent-purple" style="padding: 20px; flex: 1;">
+                        <span class="text-neon-pink" style="font-family: 'JetBrains Mono'; font-size: 12px; display: block; margin-bottom: 15px;">> GPU_CLUSTER_STATUS</span>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div style="text-align: center;">
+                                <div style="position: relative; width: 80px; height: 80px; margin: 0 auto;">
+                                    <svg viewBox="0 0 36 36" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3" />
+                                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e879f9" stroke-width="3" stroke-dasharray="100" stroke-dashoffset="15" />
+                                    </svg>
+                                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 700; color: #fff;">85°C</div>
+                                </div>
+                                <div style="font-size: 11px; margin-top: 5px; color: var(--text-secondary);">TEMP</div>
+                            </div>
+
+                            <div style="text-align: center;">
+                                <div style="position: relative; width: 80px; height: 80px; margin: 0 auto;">
+                                    <svg viewBox="0 0 36 36" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3" />
+                                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#22d3ee" stroke-width="3" stroke-dasharray="100" stroke-dashoffset="5" />
+                                    </svg>
+                                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 700; color: #fff;">95%</div>
+                                </div>
+                                <div style="font-size: 11px; margin-top: 5px; color: var(--text-secondary);">LOAD</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 5px; color: #94a3b8;">
+                                <span>VRAM USAGE</span>
+                                <span>22GB / 24GB</span>
+                            </div>
+                            <div style="height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px;">
+                                <div style="height: 100%; width: 92%; background: #e879f9; box-shadow: 0 0 10px #e879f9;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network Viz -->
+                    <div class="holo-card" style="flex: 1; padding: 10px; display: flex; flex-direction: column;">
+                        <span class="text-neon-cyan" style="font-family: 'JetBrains Mono'; font-size: 12px; margin-bottom: 10px;">> TOPOLOGY_LIVE</span>
+                        <div class="network-viz">
+                            <div class="layer">
+                                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                            </div>
+                            <div class="layer">
+                                <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+                            </div>
+                            <div class="layer">
+                                <div class="node"></div><div class="node"></div><div class="node"></div>
+                            </div>
+                             <div class="layer">
+                                <div class="node"></div><div class="node"></div>
+                            </div>
+                             <!-- Simulated Connections (lines) are hard in pure CSS without Canvas/SVG, kept abstract -->
+                            <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: repeating-linear-gradient(90deg, transparent, transparent 19%, rgba(6, 182, 212, 0.05) 20%); pointer-events: none;"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+                
+                <!-- Hyperparams -->
+                <div class="holo-card" style="padding: 20px;">
+                    <span class="text-neon-cyan" style="font-family: 'JetBrains Mono'; font-size: 12px; display: block; margin-bottom: 15px;">> HYPER_PARAMETERS</span>
+                    <table style="width: 100%; color: #94a3b8; font-size: 13px;">
+                        <tr>
+                            <td style="padding: 8px 0;">Learning Rate</td>
+                            <td class="font-mono text-neon-pink" style="text-align: right;">0.00015</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px 0;">Batch Size</td>
+                            <td class="font-mono" style="text-align: right;">64</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px 0;">Optimizer</td>
+                            <td class="font-mono" style="text-align: right;">AdamW</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px 0;">Dropout</td>
+                            <td class="font-mono" style="text-align: right;">0.25</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Logs -->
+                <div class="holo-card" style="padding: 0; background: rgba(0,0,0,0.5);">
+                    <div style="background: rgba(6, 182, 212, 0.1); padding: 8px 15px; border-bottom: 1px solid rgba(6, 182, 212, 0.2); font-size: 11px; color: #22d3ee; font-family: 'JetBrains Mono';">
+                        TERMINAL_OUTPUT
+                    </div>
+                    <div style="padding: 15px; font-family: 'JetBrains Mono'; font-size: 11px; color: #94a3b8; height: 160px; overflow-y: auto;">
+                        <div style="margin-bottom: 4px;">Epoch 849/1000 [================>...] - loss: 0.1245</div>
+                        <div style="margin-bottom: 4px;">Epoch 849: val_loss improved from 0.1250 to 0.1245</div>
+                        <div style="margin-bottom: 4px; color: #e879f9;">> Saving checkpoint to /models/v9/chk_849.h5</div>
+                        <div style="margin-bottom: 4px;">Epoch 850/1000 [==>.............] - ETA: 45s</div>
+                        <div style="margin-bottom: 4px;">... Batch 120/500 processed</div>
+                        <div style="margin-bottom: 4px;">... Batch 121/500 processed</div>
+                        <div style="margin-bottom: 4px;">... Batch 122/500 processed</div>
+                        <div style="margin-bottom: 4px; border-left: 2px solid #06b6d4; padding-left: 8px; color: #fff;">
+                            INFO: Gradient clipping applied at normative value 1.0
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Batch -->
+                <div class="holo-card" style="padding: 20px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <span class="text-neon-cyan" style="font-family: 'JetBrains Mono'; font-size: 12px; margin-bottom: 15px;">> CURRENT_SAMPLE</span>
+                    <div class="skeleton" style="width: 100px; height: 100px; background: linear-gradient(45deg, #1e293b, #0f172a); border: 1px solid #334155; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                         <!-- Fake Image processing visual -->
+                         <div style="position: absolute; width: 100%; height: 2px; background: #e879f9; box-shadow: 0 0 10px #e879f9; animation: scan-down 2s infinite;"></div>
+                         <i class="fa-solid fa-image" style="font-size: 30px; color: #334155;"></i>
+                    </div>
+                    <div style="margin-top: 15px; font-family: 'JetBrains Mono'; font-size: 10px; color: #fff;">
+                        LABEL: <span style="color: #22d3ee;">"Golden Retriever"</span> (98%)
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <style>
+        @keyframes scan-down {
+            0% { top: 0; opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Init Training Chart if on this page
+        if(document.getElementById('trainingChart')) {
+            const ctx = document.getElementById('trainingChart').getContext('2d');
+            
+            // Neon Gradients
+            const gradCyan = ctx.createLinearGradient(0,0,0,400);
+            gradCyan.addColorStop(0, 'rgba(34, 211, 238, 0.5)');
+            gradCyan.addColorStop(1, 'rgba(34, 211, 238, 0)');
+
+            const gradPink = ctx.createLinearGradient(0,0,0,400);
+            gradPink.addColorStop(0, 'rgba(232, 121, 249, 0.5)');
+            gradPink.addColorStop(1, 'rgba(232, 121, 249, 0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 20}, (_, i) => i + 1),
+                    datasets: [
+                        {
+                            label: 'Accuracy',
+                            data: [65, 68, 70, 72, 75, 74, 78, 80, 82, 81, 85, 87, 86, 89, 90, 91, 93, 94, 95, 96],
+                            borderColor: '#22d3ee',
+                            backgroundColor: gradCyan,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Loss',
+                            data: [80, 75, 70, 65, 60, 58, 55, 50, 48, 45, 40, 35, 30, 28, 25, 20, 15, 12, 10, 8],
+                            borderColor: '#e879f9',
+                            backgroundColor: gradPink,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false },
+                        y: { 
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#64748b', font: { family: 'JetBrains Mono' } } 
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'linear'
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

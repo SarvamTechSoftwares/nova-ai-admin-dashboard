@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Playground - NovaAI</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <div class="logo-text">NovaAI</div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-grid-2"></i> <span>Dashboard</span>
+                </a>
+                
+                <div class="nav-category">App</div>
+
+                <a href="playground.html" class="nav-item active">
+                    <i class="fa-solid fa-flask"></i> <span>Playground</span>
+                </a>
+
+                <a href="model-training.html" class="nav-item">
+                    <i class="fa-solid fa-layer-group"></i> <span>Model Training</span> 
+                </a>
+
+                <a href="agents.html" class="nav-item">
+                    <i class="fa-solid fa-robot"></i> <span>Agents Hub</span>
+                </a>
+
+                <div class="nav-category">Management</div>
+                
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-users"></i> <span>Users</span>
+                </a>
+                <a href="#" class="nav-item">
+                     <i class="fa-solid fa-chart-pie"></i> <span>Analytics</span>
+                </a>
+
+                <div style="flex: 1;"></div>
+                
+                <a href="settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i> <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <button id="sidebar-toggle" style="color: var(--text-secondary); font-size: 20px;">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="search-container">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" class="search-input" placeholder="Search prompts history...">
+                </div>
+
+                <div class="header-actions">
+                    <button class="icon-btn"><i class="fa-regular fa-sun"></i></button>
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <div class="user-profile">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <h1 class="page-title">Playground</h1>
+                    <p class="welcome-text" style="margin-bottom: 0;">Test and fine-tune your AI models in real-time.</p>
+                </div>
+                <div>
+                    <button class="badge badge-neutral" style="border: 1px solid var(--border-glass); cursor: pointer;">
+                        <i class="fa-solid fa-sliders"></i> &nbsp; Model: GPT-4-Turbo
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-layout">
+                <!-- Sidebar History -->
+                <div class="chat-sidebar">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="font-size: 14px; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">History</h3>
+                        <button style="color: var(--primary-blue); font-size: 12px;"><i class="fa-solid fa-plus"></i> New</button>
+                    </div>
+
+                    <div style="flex: 1; overflow-y: auto;">
+                        <div class="chat-item active">
+                            <div class="chat-item-title">Customer Support Bot</div>
+                            <div class="chat-item-preview">Generate a response for a refund...</div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="chat-item-title">Python Code Gen</div>
+                            <div class="chat-item-preview">Write a script to scrape data...</div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="chat-item-title">Marketing Copy</div>
+                            <div class="chat-item-preview">Create 5 punchy headlines for...</div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="chat-item-title">SQL Query Helper</div>
+                            <div class="chat-item-preview">Select all users where date...</div>
+                        </div>
+                        <div class="chat-item">
+                            <div class="chat-item-title">Translation Task</div>
+                            <div class="chat-item-preview">Translate the following technical...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Area -->
+                <div class="chat-main">
+                    <div class="chat-messages">
+                        
+                        <!-- AI Message -->
+                        <div class="message ai">
+                            <div class="message-avatar" style="background: var(--accent-gradient-purple); color: white;">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="message-bubble">
+                                Hello! I'm NovaAI v4.2. How can I assist you with your tasks today?
+                            </div>
+                        </div>
+
+                        <!-- User Message -->
+                        <div class="message user">
+                            <div class="message-avatar" style="background: var(--text-secondary); color: white;">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="message-bubble">
+                                I need to generate a Python function that connects to a Redis database and caches a user profile object. Can you also include error handling?
+                            </div>
+                        </div>
+
+                        <!-- AI Message -->
+                        <div class="message ai">
+                            <div class="message-avatar" style="background: var(--accent-gradient-purple); color: white;">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="message-bubble">
+                                <p style="margin-bottom: 10px;">Certainly! Here is a robust Python function using `redis-py` that handles connection errors and serialization:</p>
+                                
+                                <div style="background: #0d1117; padding: 15px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; border: 1px solid var(--glass-border); color: #c9d1d9;">
+                                    <span style="color: #ff7b72">import</span> redis<br>
+                                    <span style="color: #ff7b72">import</span> json<br><br>
+                                    <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff">cache_user_profile</span>(user_id, profile_data):<br>
+                                    &nbsp;&nbsp;<span style="color: #ff7b72">try</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;r = redis.Redis(host='localhost', port=6379, db=0)<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;r.setex(<span style="color: #a5d6ff">f"user:{user_id}"</span>, 3600, json.dumps(profile_data))<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff7b72">return</span> <span style="color: #79c0ff">True</span><br>
+                                    &nbsp;&nbsp;<span style="color: #ff7b72">except</span> redis.ConnectionError <span style="color: #ff7b72">as</span> e:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span style="color: #a5d6ff">f"Redis Error: {e}"</span>)<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff7b72">return</span> <span style="color: #79c0ff">False</span>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- User Message -->
+                        <div class="message user">
+                            <div class="message-avatar" style="background: var(--text-secondary); color: white;">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="message-bubble">
+                                Great. Now what if the Redis instance is down? How do I fallback?
+                            </div>
+                        </div>
+
+                        <!-- Typing Indicator -->
+                        <div class="message ai">
+                            <div class="message-avatar" style="background: var(--accent-gradient-purple); color: white;">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="message-bubble" style="padding: 12px 16px;">
+                                <div style="display: flex; gap: 4px;">
+                                    <div style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; opacity: 0.6; animation: skeleton-loading 1s infinite;"></div>
+                                    <div style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; opacity: 0.6; animation: skeleton-loading 1s infinite 0.2s;"></div>
+                                    <div style="width: 6px; height: 6px; background: var(--text-secondary); border-radius: 50%; opacity: 0.6; animation: skeleton-loading 1s infinite 0.4s;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+                    <!-- Input Area -->
+                    <div class="chat-input-area">
+                        <button style="color: var(--text-secondary); font-size: 16px;"><i class="fa-solid fa-paperclip"></i></button>
+                        <input type="text" class="chat-input" placeholder="Type your prompt here...">
+                        <button style="background: var(--primary-blue); color: white; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Main Logic -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

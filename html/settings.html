@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - AI Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <div class="logo-text">NovaAI</div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-grid-2"></i> <span>Dashboard</span>
+                </a>
+                
+                <div class="nav-category">App</div>
+
+                <a href="playground.html" class="nav-item">
+                    <i class="fa-solid fa-flask"></i> <span>Playground</span>
+                </a>
+
+                <a href="model-training.html" class="nav-item">
+                    <i class="fa-solid fa-layer-group"></i> <span>Model Training</span> 
+                </a>
+
+                <a href="agents.html" class="nav-item">
+                    <i class="fa-solid fa-robot"></i> <span>Agents Hub</span>
+                </a>
+
+                <div class="nav-category">Management</div>
+                
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-users"></i> <span>Users</span>
+                </a>
+                <a href="#" class="nav-item">
+                     <i class="fa-solid fa-chart-pie"></i> <span>Analytics</span>
+                </a>
+
+                <div style="flex: 1;"></div>
+                
+                <a href="settings.html" class="nav-item active">
+                    <i class="fa-solid fa-gear"></i> <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <button id="menu-toggle" class="btn btn-outline" style="padding: 8px;">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <h2>System Settings</h2>
+                </div>
+            </header>
+
+            <div class="glass-panel" style="padding: 30px; max-width: 800px;">
+                <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px;">General Configuration</h3>
+                
+                <form>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                        <div class="form-group">
+                            <label class="form-label">System Name</label>
+                            <input type="text" class="form-input" value="NovaAI Production Node 1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Admin Email</label>
+                            <input type="email" class="form-input" value="admin@novaai.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">API Rate Limit (Req/min)</label>
+                            <input type="number" class="form-input" value="1000">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Data Retention (Days)</label>
+                            <input type="number" class="form-input" value="90">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px;">Notifications & Security</h3>
+
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div>
+                                <div style="font-weight: 500;">Email Notifications</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">Receive reports via email</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked style="accent-color: var(--accent-primary); width: 20px; height: 20px;">
+                            </label>
+                        </div>
+
+                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div>
+                                <div style="font-weight: 500;">Two-Factor Authentication</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">Require 2FA for login</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked style="accent-color: var(--accent-primary); width: 20px; height: 20px;">
+                            </label>
+                        </div>
+
+                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div>
+                                <div style="font-weight: 500;">Public API Access</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">Allow external connections</div>
+                            </div>
+                             <label class="switch">
+                                <input type="checkbox" style="accent-color: var(--accent-primary); width: 20px; height: 20px;">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="text-align: right; margin-top: 40px;">
+                        <button type="button" class="btn btn-outline" style="margin-right: 10px;">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+    </div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
